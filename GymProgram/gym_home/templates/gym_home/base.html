@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'gym_home/style.css' %}">
+    <title>{% block title %} Home page {% endblock %}</title>
+  </head>
+  <body class="dark-bg">
+    <header>
+      <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'programs' %}">Programs</a></li>
+            {% if user.is_staff %}
+              <a href="{% url 'addprograms' %}">Add Programs</a>
+            {% endif %}
+            {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}">Login</a>
+            {% else %} 
+              <a href="{% url 'logout' %}">Logout</a>     
+            {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    {% block content %}
+    <main>Welcome!</main>
+    {% endblock %}
+  </body>
+</html>
