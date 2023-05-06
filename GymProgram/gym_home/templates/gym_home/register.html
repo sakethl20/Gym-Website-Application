@@ -1,0 +1,13 @@
+{% block content %} 
+
+<center><h1 style="color:#4c3c4d;">Please register below...</h1></center>
+
+<center>
+    <form method="POST" action=".">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+</center>
+
+{% endblock %}

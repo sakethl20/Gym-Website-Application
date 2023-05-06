@@ -1,0 +1,26 @@
+{% extends "gym_home/base.html" %} 
+{% block title %} Login Page {% endblock %}
+
+{%block content%}
+{% if error %}
+<p class="text-danger">{{ error }}</p> 
+{% endif %}
+
+    <center> <h1 style="color:#4c3c4d;"> Login </h1>
+
+    <center>
+
+        <form method="POST"><br>
+            {% csrf_token %}
+            <input type="text" name="username" class="form-control" placeholder="Username"> <br>
+            <input type="password" name="password" class="form-control" placeholder="Password"> <br>   
+            <input type="submit" value="Login" class="btn btn-primary"> <br>      
+        </form>
+        <br><br>
+        <p style="color:#ffff;">If you do not have an account, please register below<p>
+        <a href="{% url 'register' %}">Create New Account</a>
+
+    <center>
+
+
+{% endblock %}

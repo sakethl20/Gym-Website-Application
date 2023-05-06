@@ -1,0 +1,35 @@
+{% extends "gym_home/base.html" %} 
+
+{% block title %} 
+
+Adding Programs page
+
+{% endblock %}
+
+{% block content %} 
+
+<h1 style="color:#4c3c4d;">Add more programs below...</h1><br><br>
+
+<center><h2 style="color:#4c3c4d;">Current programs:</h2></center>
+<center><table border='1'>
+    <tr>
+        <th>Title</th>
+        <th>Timings</th>
+    </tr>
+    {% for x in myPrograms %}
+        <tr>
+            <td style="color:#ffff;">{{ x.title }}</td>
+            <td style="color:#ffff;">{{ x.timings }}</td>
+        </tr>
+    {% endfor %}
+</table></center><br><br>
+
+<center>
+    <form method="POST" action="." style="color:#ffff;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+</center>
+
+{% endblock %}

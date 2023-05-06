@@ -1,0 +1,46 @@
+{% extends "gym_home/base.html" %} 
+{% load static %}
+{% block title %} 
+
+Programs page
+
+{% endblock %}
+
+{% block content %} 
+
+<h1 style="color:#4c3c4d;">Available Programs</h1><br><br>
+
+{% for x in myPrograms %}
+    <div class="program">
+        <h2 style="color:#4c3c4d;">{{ x.title }}</h2>
+        <p style="color:#4c3c4d;"><strong>Description:</strong></p> <p>{{ x.description }}</p>
+        <p style="color:#4c3c4d;"><strong>Timings:</strong></p> <p>{{ x.timings }}</p>
+        {% if not request.user.is_staff %}
+        <p>
+            <button class="button" onclick="window.location.href='{% url 'signup' %}'">
+                Sign Up
+            </button>
+        </p>
+        {% endif %}
+
+        {% if request.user.is_staff %}
+            <h4 style="color:#4c3c4d;">Attendees:</h4>
+            <table border='2' style="width: 50%;">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                {% for i in mySignedPrograms %}
+                    {% if x.title == i.programName %}
+                    <tr>
+                        <td>{{ i.firstname }}</td>
+                        <td>{{ i.lastname }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}
